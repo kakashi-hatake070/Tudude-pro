@@ -17,7 +17,11 @@ export const connectDB = async () => {
     console.log('[Database] Initializing high-performance MongoDB In-Memory Server with 2dsphere indexing support...');
     
     try {
-      mongodInstance = await MongoMemoryServer.create();
+      mongodInstance = await MongoMemoryServer.create({
+        binary: {
+          version: '7.0.14'
+        }
+      });
       const memUri = mongodInstance.getUri();
       await mongoose.connect(memUri);
       console.log(`[Database] MongoDB In-Memory Server ready & connected: ${memUri}`);
