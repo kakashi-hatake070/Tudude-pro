@@ -341,7 +341,7 @@ export const LiveMapPage: React.FC = () => {
                     src={
                       selectedReport.media[0].url.startsWith('http') || selectedReport.media[0].url.startsWith('/assets/')
                         ? selectedReport.media[0].url
-                        : `http://localhost:5001${selectedReport.media[0].url}`
+                        : `${(import.meta.env.VITE_API_URL || 'http://localhost:5001/api').replace(/\/api\/?$/, '')}${selectedReport.media[0].url}`
                     }
                     alt="Hazard Evidence"
                     className="w-full h-44 object-cover"

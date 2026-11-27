@@ -102,11 +102,9 @@ export const MapComponent: React.FC<MapComponentProps> = ({
   useEffect(() => {
     if (!mapContainer.current) return;
 
-    const customStyleUrl = import.meta.env.VITE_MAPLIBRE_STYLE;
-
     const map = new maplibregl.Map({
       container: mapContainer.current,
-      style: customStyleUrl || buildTileStyle(document.documentElement.classList.contains('dark')),
+      style: buildTileStyle(document.documentElement.classList.contains('dark')),
       center,
       zoom,
       interactive,
@@ -181,8 +179,6 @@ export const MapComponent: React.FC<MapComponentProps> = ({
   // Switch map tiles live when dark/light theme changes
   useEffect(() => {
     if (!mapRef.current || !mapLoaded) return;
-    const customStyleUrl = import.meta.env.VITE_MAPLIBRE_STYLE;
-    if (customStyleUrl) return;
     const map = mapRef.current;
     map.setStyle(buildTileStyle(isDark));
     map.once('styledata', () => {
