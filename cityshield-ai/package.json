@@ -1,0 +1,16 @@
+{
+  "name": "cityshield-ai",
+  "version": "1.0.0",
+  "description": "CityShield AI — Advanced Full-Stack AI/ML Smart City Intelligence & Urban Safety Platform",
+  "private": true,
+  "scripts": {
+    "install:all": "npm install && cd backend && npm install && cd ../frontend && npm install",
+    "dev:backend": "cd backend && npm run dev",
+    "dev:frontend": "cd frontend && npm run dev",
+    "dev:ai": "cd ai-service && (source venv/bin/activate 2>/dev/null || true) && uvicorn main:app --host 0.0.0.0 --port 8000 --reload",
+    "start": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\""
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
